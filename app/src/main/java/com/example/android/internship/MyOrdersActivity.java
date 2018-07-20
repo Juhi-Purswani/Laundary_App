@@ -29,15 +29,20 @@ public class MyOrdersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_orders);
 
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("order");
+
         listView = (ListView) findViewById(R.id.list);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 order currentOrder = orderList.get(i);
+
                 Intent intent = new Intent(MyOrdersActivity.this, OrderStatusActivity.class);
                 intent.putExtra("Detail_Order", currentOrder);
                 startActivity(intent);
+
             }
         });
     }

@@ -3,6 +3,7 @@ package com.example.android.internship;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public class OrderSummaryActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String message = bundle.getString("DeliveryDate");
+        Log.e("delivery date",message);
 
         deliveryDate = (TextView)findViewById(R.id.delivery_date);
         deliveryDate.setText(message);

@@ -9,6 +9,7 @@ public class order implements Parcelable {
     private String mSlot;
     private String mService;
     private String mAddress;
+    private String mKey;
 
     public order(){
 
@@ -20,15 +21,17 @@ public class order implements Parcelable {
         mSlot = in.readString();
         mService = in.readString();
         mAddress = in.readString();
+        mKey = in.readString();
 
     }
 
-    public order(String quantity, String date, String slot, String service, String address){
+    public order(String quantity, String date, String slot, String service, String address,String key){
         this.mQuantity = quantity;
         this.mDate = date;
         this.mSlot = slot;
         this.mService = service;
         this.mAddress = address;
+        this.mKey = key;
     }
 
     public String getQuantity() {
@@ -56,6 +59,11 @@ public class order implements Parcelable {
     }
     public void setAddress(String address){this.mAddress = address;}
 
+    public String getKey() {
+        return mKey;
+    }
+    public void setKey(String key){this.mKey = key;}
+
     @Override
     public int describeContents() {
         return 0;
@@ -68,6 +76,7 @@ public class order implements Parcelable {
         dest.writeString(mSlot);
         dest.writeString(mService);
         dest.writeString(mAddress);
+        dest.writeString(mKey);
 
     }
 

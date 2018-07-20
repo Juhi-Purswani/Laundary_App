@@ -2,8 +2,10 @@ package com.example.android.internship;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,11 +15,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 public class NewOrder1Activity extends AppCompatActivity {
 
@@ -42,6 +46,10 @@ public class NewOrder1Activity extends AppCompatActivity {
     Calendar mCurrentDate;
     int day, month, year;
     private String date;
+
+    private String machine_select = "unselect";
+    private String iron_select = "unselect";
+
 
     private ImageView machine;
     private ImageView iron;
@@ -96,6 +104,9 @@ public class NewOrder1Activity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int months, int dayOfMonth) {
                         months = months+1;
                         dateCalendar.setText(dayOfMonth+"/"+months+"/"+year);
+                        day = dayOfMonth;
+                        month = months;
+
 
                     }
                 },year,month,day);
@@ -103,38 +114,63 @@ public class NewOrder1Activity extends AppCompatActivity {
             }
         });
 
-        date = calculateDeliveryDate();
+        //date = calculateDeliveryDate();
+        //Log.e("after calculatedelivery",date);
 
         placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                place_order();
-                //finish();
-                Intent i = new Intent(NewOrder1Activity.this,OrderSummaryActivity.class);
-                i.putExtra("DeliveryDate",date);
-                startActivity(i);
+                if (service == null){
+                    Toast.makeText(NewOrder1Activity.this,"Kindly choose service",Toast.LENGTH_SHORT).show();
+                }else {
+                    place_order();
+
+                    //finish();
+                    date = calculateDeliveryDate();
+                    Intent i = new Intent(NewOrder1Activity.this,OrderSummaryActivity.class);
+                    i.putExtra("DeliveryDate",date);
+                    startActivity(i);
+                }
+
             }
         });
 
         machine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                machine.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                service = "machine";
+                if (machine_select.equals("unselect")){
+                    machine.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    service = "machine";
+                    machine_select = "select";
+                }else if (machine_select.equals("select")){
+                    machine.setBackgroundColor(Color.TRANSPARENT);
+                    service = null;
+                    machine_select = "unselect";
+                }
+
             }
         });
 
         iron.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iron.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                service = "iron";
+                if (iron_select.equals("unselect")){
+                    iron.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    service = "iron";
+                    iron_select = "select";
+                }else if (iron_select.equals("select")){
+                    iron.setBackgroundColor(Color.TRANSPARENT);
+                    service = null;
+                    iron_select = "unselect";
+                }
             }
         });
 
         setupTimeSlotSpinner();
         setupQuantitySpinner();
-        date = calculateDeliveryDate();
+        String key = UUID.randomUUID().toString();
+        Log.e("key uuid",key);
+
     }
 
     public void place_order(){
@@ -143,6 +179,11 @@ public class NewOrder1Activity extends AppCompatActivity {
         newOrder.setDate(dateCalendar.getText().toString());
         newOrder.setService(service);
         newOrder.setSlot(timeSlot);
+        String key = UUID.randomUUID().toString();
+        Log.e("key uuid",key);
+        key = key.substring(0, Math.min(key.length(), 8));
+        Log.e("trunc key uuid",key);
+        newOrder.setKey(key);
         mMessagesDatabaseReference.push().setValue(newOrder);
 
     }
@@ -184,6 +225,11 @@ public class NewOrder1Activity extends AppCompatActivity {
     }
 
     private void setupQuantitySpinner() {
+        String key = UUID.randomUUID().toString();
+        Log.e("key uuid",key);
+        Log.e("quantity spinner","called");
+        quantity = "1-20";
+        Log.e("quantity assign before",quantity);
         // Create adapter for spinner. The list options are from the String array it will use
         // the spinner will use the default layout
         ArrayAdapter quantitySpinnerAdapter = ArrayAdapter.createFromResource(this,R.array.quantity_options,
@@ -202,7 +248,9 @@ public class NewOrder1Activity extends AppCompatActivity {
                 String selection = (String) parent.getItemAtPosition(position);
 
                 if (selection.equals("1-20")) {
+
                     quantity = "1-20";
+                    Log.e("quantity assign",quantity);
                 } else if (selection.equals("20-40")) {
                     quantity = "20-40";
                 } else {
@@ -214,6 +262,8 @@ public class NewOrder1Activity extends AppCompatActivity {
             // Because AdapterView is an abstract class, onNothingSelected must be defined
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                quantity = "1-20";
+                Log.e("quantity assign",quantity);
 
             }
         });
@@ -221,7 +271,13 @@ public class NewOrder1Activity extends AppCompatActivity {
 
     private String calculateDeliveryDate(){
         String delivery;
+        if (quantity == null){
+            Log.e("inside method","quantity null");
+        }
+        //Log.e("inside calculate",quantity);
+        Log.e("inside day is",String.valueOf(day));
         if(quantity != null){
+            Log.e("inside method","quantity not null");
             if (quantity.equals("1-20") ){
                 //2 days
                 if (day==31){
@@ -232,6 +288,30 @@ public class NewOrder1Activity extends AppCompatActivity {
                 }
                 else{
                     deliveryDate = day +2;
+                }
+            }
+            if (quantity.equals("20-40") ){
+                //3 days
+                if (day==31){
+                    deliveryDate = 3;
+                }
+                else if (day == 29 ){
+                    deliveryDate = 2;
+                }
+                else{
+                    deliveryDate = day +3;
+                }
+            }
+            if (quantity.equals("40+") ){
+                //4 days
+                if (day==31){
+                    deliveryDate = 4;
+                }
+                else if (day == 29 ){
+                    deliveryDate = 3;
+                }
+                else{
+                    deliveryDate = day +4;
                 }
             }
         }
