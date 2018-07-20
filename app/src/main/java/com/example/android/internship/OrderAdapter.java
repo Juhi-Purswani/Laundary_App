@@ -22,13 +22,13 @@ public class OrderAdapter extends ArrayAdapter<order> {
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.items_orders, parent, false);
         }
 
-        TextView usernameView = (TextView) convertView.findViewById(R.id.username_item);
+       // TextView usernameView = (TextView) convertView.findViewById(R.id.username_item);
 
         TextView dateTextView = (TextView) convertView.findViewById(R.id.date_item);
 
         TextView slotTextView = (TextView) convertView.findViewById(R.id.time_slot_item);
 
-        TextView addressTextView = (TextView) convertView.findViewById(R.id.address_item);
+        //TextView addressTextView = (TextView) convertView.findViewById(R.id.address_item);
 
         TextView serviceTextView = (TextView) convertView.findViewById(R.id.service_item);
 
@@ -36,11 +36,11 @@ public class OrderAdapter extends ArrayAdapter<order> {
 
         order new_order = getItem(position);
 
-        usernameView.setText(new_order.getQuantity());
+        //usernameView.setText(new_order.getQuantity());
         dateTextView.setText(new_order.getDate());
         slotTextView.setText(new_order.getSlot());
         serviceTextView.setText(new_order.getService());
-        addressTextView.setText(new_order.getAddress());
+        //addressTextView.setText(new_order.getAddress());
 
 
 

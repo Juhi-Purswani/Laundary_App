@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delivery Date"
+        android:text="22/07/2018"
         android:id="@+id/delivery_date"
         android:layout_gravity="center_horizontal"/>
 
