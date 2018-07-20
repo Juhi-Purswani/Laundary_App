@@ -1,7 +1,10 @@
 package com.example.android.internship;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +30,16 @@ public class MyOrdersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_orders);
 
         listView = (ListView) findViewById(R.id.list);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                order currentOrder = orderList.get(i);
+                Intent intent = new Intent(MyOrdersActivity.this, OrderStatusActivity.class);
+                intent.putExtra("Detail_Order", currentOrder);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -36,7 +36,7 @@ public class OrderAdapter extends ArrayAdapter<order> {
 
         order new_order = getItem(position);
 
-        usernameView.setText(new_order.getUsername());
+        usernameView.setText(new_order.getQuantity());
         dateTextView.setText(new_order.getDate());
         slotTextView.setText(new_order.getSlot());
         serviceTextView.setText(new_order.getService());

@@ -19,7 +19,8 @@
         <activity android:name=".NewOrder1Activity" />
         <activity android:name=".MyOrdersActivity" />
         <activity android:name=".ThankYouActivity" />
-        <activity android:name=".OrderSummaryActivity"></activity>
+        <activity android:name=".OrderSummaryActivity" />
+        <activity android:name=".OrderStatusActivity"></activity>
     </application>
 
 </manifest>

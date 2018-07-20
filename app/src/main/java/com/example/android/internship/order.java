@@ -1,7 +1,10 @@
 package com.example.android.internship;
 
-public class order {
-    private String mUsername;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class order implements Parcelable {
+    private String mQuantity;
     private String mDate;
     private String mSlot;
     private String mService;
@@ -11,18 +14,27 @@ public class order {
 
     }
 
-    public order(String username, String date, String slot, String service, String address){
-        this.mUsername = username;
+    public order(Parcel in){
+        mQuantity = in.readString();
+        mDate = in.readString();
+        mSlot = in.readString();
+        mService = in.readString();
+        mAddress = in.readString();
+
+    }
+
+    public order(String quantity, String date, String slot, String service, String address){
+        this.mQuantity = quantity;
         this.mDate = date;
         this.mSlot = slot;
         this.mService = service;
         this.mAddress = address;
     }
 
-    public String getUsername() {
-        return mUsername;
+    public String getQuantity() {
+        return mQuantity;
     }
-    public void setUsername(String username){this.mUsername = username;}
+    public void setQuantity(String quantity){this.mQuantity = quantity;}
 
     public String getDate() {
         return mDate;
@@ -44,4 +56,28 @@ public class order {
     }
     public void setAddress(String address){this.mAddress = address;}
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mQuantity);
+        dest.writeString(mDate);
+        dest.writeString(mSlot);
+        dest.writeString(mService);
+        dest.writeString(mAddress);
+
+    }
+
+    public static final Parcelable.Creator<order> CREATOR = new Parcelable.Creator<order>(){
+        public order createFromParcel(Parcel in) {
+            return new order(in);
+        }
+
+        public order[] newArray(int size) {
+            return new order[size];
+        }
+    };
 }

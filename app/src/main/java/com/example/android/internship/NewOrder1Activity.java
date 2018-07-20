@@ -138,7 +138,7 @@ public class NewOrder1Activity extends AppCompatActivity {
     }
 
     public void place_order(){
-        newOrder.setUsername(quantity);
+        newOrder.setQuantity(quantity);
         newOrder.setAddress(mAddress.getText().toString());
         newOrder.setDate(dateCalendar.getText().toString());
         newOrder.setService(service);
