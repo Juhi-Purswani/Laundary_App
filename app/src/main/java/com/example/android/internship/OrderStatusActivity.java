@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +22,7 @@ public class OrderStatusActivity extends AppCompatActivity {
     private TextView date;
     private TextView adrress;
     private TextView key;
+    private TextView deliveryDate;
 
     private Button cancelOrder;
 
@@ -41,6 +43,7 @@ public class OrderStatusActivity extends AppCompatActivity {
         date = (TextView)findViewById(R.id.date_detail);
         adrress = (TextView)findViewById(R.id.address_detail);
         key = (TextView)findViewById(R.id.key_detail);
+        deliveryDate = (TextView)findViewById(R.id.delivery_date_detail);
 
         cancelOrder = (Button)findViewById(R.id.cancel_order);
 
@@ -54,6 +57,7 @@ public class OrderStatusActivity extends AppCompatActivity {
         date.setText(this_order.getDate());
         adrress.setText(this_order.getAddress());
         key.setText(this_order.getKey());
+        deliveryDate.setText(this_order.getDeliveryDate());
 
         final String key2 = this_order.getKey();
 
@@ -73,6 +77,7 @@ public class OrderStatusActivity extends AppCompatActivity {
 
                     }
                 });
+                Toast.makeText(OrderStatusActivity.this,"Your order is cancelled",Toast.LENGTH_LONG).show();
                 finish();
             }
         });

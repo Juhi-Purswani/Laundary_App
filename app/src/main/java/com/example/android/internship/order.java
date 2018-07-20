@@ -10,6 +10,7 @@ public class order implements Parcelable {
     private String mService;
     private String mAddress;
     private String mKey;
+    private String mDeliveyDate;
 
     public order(){
 
@@ -22,16 +23,18 @@ public class order implements Parcelable {
         mService = in.readString();
         mAddress = in.readString();
         mKey = in.readString();
+        mDeliveyDate = in.readString();
 
     }
 
-    public order(String quantity, String date, String slot, String service, String address,String key){
+    public order(String quantity, String date, String slot, String service, String address,String key,String deliveryDate){
         this.mQuantity = quantity;
         this.mDate = date;
         this.mSlot = slot;
         this.mService = service;
         this.mAddress = address;
         this.mKey = key;
+        this.mDeliveyDate = deliveryDate;
     }
 
     public String getQuantity() {
@@ -64,6 +67,11 @@ public class order implements Parcelable {
     }
     public void setKey(String key){this.mKey = key;}
 
+    public String getDeliveryDate() {
+        return mDeliveyDate;
+    }
+    public void setDeliveryDate(String deliveryDate){this.mDeliveyDate = deliveryDate;}
+
     @Override
     public int describeContents() {
         return 0;
@@ -77,6 +85,7 @@ public class order implements Parcelable {
         dest.writeString(mService);
         dest.writeString(mAddress);
         dest.writeString(mKey);
+        dest.writeString(mDeliveyDate);
 
     }
 

@@ -35,6 +35,8 @@ public class NewOrder1Activity extends AppCompatActivity {
 
     private order newOrder;
 
+
+
     private Spinner mTimeSlotSpinner;
     private String timeSlot;
 
@@ -126,7 +128,7 @@ public class NewOrder1Activity extends AppCompatActivity {
                     place_order();
 
                     //finish();
-                    date = calculateDeliveryDate();
+                    //date = calculateDeliveryDate();
                     Intent i = new Intent(NewOrder1Activity.this,OrderSummaryActivity.class);
                     i.putExtra("DeliveryDate",date);
                     startActivity(i);
@@ -184,6 +186,8 @@ public class NewOrder1Activity extends AppCompatActivity {
         key = key.substring(0, Math.min(key.length(), 8));
         Log.e("trunc key uuid",key);
         newOrder.setKey(key);
+        date = calculateDeliveryDate();
+        newOrder.setDeliveryDate(date);
         mMessagesDatabaseReference.push().setValue(newOrder);
 
     }
