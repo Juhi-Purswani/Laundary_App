@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Internship</string>
+    <string-array name="time_slots">
+        <item>10 am - 12 pm</item>
+        <item>12 pm - 2 pm</item>
+        <item>2 pm - 4 pm</item>
+        <item>4 pm - 6 pm</item>
+    </string-array>
 </resources>
