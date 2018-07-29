@@ -2,25 +2,46 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:id="@+id/username_item"/>-->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/date_item"/>
+        android:text="Order Key:"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/time_slot_item"/>
+        android:id="@+id/registration_item"
+        android:text="Registration Id"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#00A695"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/service_item"/>
+        android:id="@+id/date_item"
+        android:text="Pickup date"
+        android:paddingTop="4dp"
+        android:textColor="#000"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/time_slot_item"
+        android:text="Time Slot"/>
+    <!--<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/service_item"/>-->
+
     <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

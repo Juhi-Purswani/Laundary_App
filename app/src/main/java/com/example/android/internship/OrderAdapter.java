@@ -28,9 +28,9 @@ public class OrderAdapter extends ArrayAdapter<order> {
 
         TextView slotTextView = (TextView) convertView.findViewById(R.id.time_slot_item);
 
-        //TextView addressTextView = (TextView) convertView.findViewById(R.id.address_item);
+        TextView registrationTextView = (TextView) convertView.findViewById(R.id.registration_item);
 
-        TextView serviceTextView = (TextView) convertView.findViewById(R.id.service_item);
+        //TextView serviceTextView = (TextView) convertView.findViewById(R.id.service_item);
 
 
 
@@ -39,8 +39,9 @@ public class OrderAdapter extends ArrayAdapter<order> {
         //usernameView.setText(new_order.getQuantity());
         dateTextView.setText(new_order.getDate());
         slotTextView.setText(new_order.getSlot());
-        serviceTextView.setText(new_order.getService());
+        //serviceTextView.setText(new_order.getService());
         //addressTextView.setText(new_order.getAddress());
+        registrationTextView.setText(new_order.getKey());
 
 
 

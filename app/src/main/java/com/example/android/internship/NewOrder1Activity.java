@@ -130,7 +130,7 @@ public class NewOrder1Activity extends AppCompatActivity {
                     //finish();
                     //date = calculateDeliveryDate();
                     Intent i = new Intent(NewOrder1Activity.this,OrderSummaryActivity.class);
-                    i.putExtra("DeliveryDate",date);
+                    i.putExtra("Order Summary",newOrder);
                     startActivity(i);
                 }
 
@@ -188,6 +188,8 @@ public class NewOrder1Activity extends AppCompatActivity {
         newOrder.setKey(key);
         date = calculateDeliveryDate();
         newOrder.setDeliveryDate(date);
+        Log.e("delivery slot","dummy value");
+        newOrder.setDeliverySlot("time slot");
         mMessagesDatabaseReference.push().setValue(newOrder);
 
     }

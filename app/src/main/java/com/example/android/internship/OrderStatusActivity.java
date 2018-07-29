@@ -23,6 +23,7 @@ public class OrderStatusActivity extends AppCompatActivity {
     private TextView adrress;
     private TextView key;
     private TextView deliveryDate;
+    private TextView deliveryTimeSlot;
 
     private Button cancelOrder;
 
@@ -44,6 +45,7 @@ public class OrderStatusActivity extends AppCompatActivity {
         adrress = (TextView)findViewById(R.id.address_detail);
         key = (TextView)findViewById(R.id.key_detail);
         deliveryDate = (TextView)findViewById(R.id.delivery_date_detail);
+        deliveryTimeSlot = (TextView)findViewById(R.id.delivery_time_slot_detail);
 
         cancelOrder = (Button)findViewById(R.id.cancel_order);
 
@@ -58,13 +60,15 @@ public class OrderStatusActivity extends AppCompatActivity {
         adrress.setText(this_order.getAddress());
         key.setText(this_order.getKey());
         deliveryDate.setText(this_order.getDeliveryDate());
+        deliveryTimeSlot.setText(this_order.getDeliverySlot());
 
         final String key2 = this_order.getKey();
 
         cancelOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mMessagesDatabaseReference.orderByChild("key").equalTo(key2).addListenerForSingleValueEvent(new ValueEventListener() {
+                mMessagesDatabaseReference.orderByChild("key").equalTo(key2).addListenerForSingleValueEvent(
+                        new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot orderSnapshot: dataSnapshot.getChildren()) {
