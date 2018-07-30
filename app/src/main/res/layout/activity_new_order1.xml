@@ -167,7 +167,7 @@
                 android:id="@+id/spinner_time_slot"
                 android:layout_height="48dp"
                 android:layout_width="wrap_content"
-                android:paddingRight="16dp"
+                android:paddingRight="17dp"
                 android:spinnerMode="dropdown"/>
         </LinearLayout>
     </LinearLayout>
