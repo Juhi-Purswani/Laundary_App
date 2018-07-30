@@ -74,6 +74,7 @@ public class OrderSummaryActivity extends AppCompatActivity {
                     }
                 });
                 Intent i = new Intent(OrderSummaryActivity.this,ThankYouActivity.class);
+                i.putExtra("orderr id",key);
                 startActivity(i);
             }
         });

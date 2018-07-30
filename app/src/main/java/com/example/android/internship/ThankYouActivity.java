@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ThankYouActivity extends AppCompatActivity {
 
     private Button myOrders;
+
+    private TextView morder_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +19,11 @@ public class ThankYouActivity extends AppCompatActivity {
         setContentView(R.layout.activity_thank_you);
 
         myOrders = (Button) findViewById(R.id.all_orders);
+        morder_id = (TextView)findViewById(R.id.order_id);
+
+        Intent intent = getIntent();
+        String order_id = intent.getExtras().getString("orderr id");
+        morder_id.setText(order_id);
 
         myOrders.setOnClickListener(new View.OnClickListener() {
             @Override

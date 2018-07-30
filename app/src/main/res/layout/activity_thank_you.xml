@@ -12,20 +12,43 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_margin="8dp"
-        android:layout_marginTop="32dp"
+        android:fontFamily="monospace"
         android:gravity="center_horizontal"
-        android:text="Thanks for using our service"
-        android:textSize="24sp" />
+        android:text="Hello username !"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ORDER PLACED"
-        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:fontFamily="monospace"
         android:gravity="center_horizontal"
-        android:layout_margin="8dp"/>
+        android:text="Thank you for using our service. Your order has been successfully placed"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:gravity="center_horizontal"
+            android:text="ORDER ID - "
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:gravity="center_horizontal"
+            android:text="2018-2907-3811"
+            android:textSize="15sp" />
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
